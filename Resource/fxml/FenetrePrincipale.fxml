@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import viewmodel.RoyaumeDesArcsEnCielViewModel?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FenetrePrincipalelController">
+    <center>
+        <fx:define>
+            <RoyaumeDesArcsEnCielViewModel fx:id="leRoyaume" />
+            <Integer fx:id="moins1" fx:value="-1" />
+        </fx:define>
+        <SplitPane dividerPositions="0.4">
+            <items>
+                <BorderPane>
+                    <center>
+                        <ListView fx:id="listeDesArcsEnCiel" items="${leRoyaume.lesArcsEnCiel}" />
+                    </center>
+                    <bottom>
+                        <Button mnemonicParsing="false" onAction="#creerArcEnCiel" text="Créer un arc en ciel vide" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets bottom="5.0" top="5.0" />
+                            </BorderPane.margin>
+                        </Button>
+                    </bottom>
+                </BorderPane>
+                <BorderPane>
+                    <center>
+                        <ListView fx:id="listeDesCouleurs" items="${listeDesArcsEnCiel.selectionModel.selectedItem.lesCouleurs}" />
+                    </center>
+                    <top>
+                        <Label text="Liste des couleurs :" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="2.0" top="2.0" />
+                     </BorderPane.margin>
+                  </Label>
+                    </top>
+                    <bottom>
+                        <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets bottom="5.0" top="5.0" />
+                            </BorderPane.margin>
+                            <children>
+                                <ColorPicker disable="${listeDesArcsEnCiel.selectionModel.selectedIndex == moins1}" fx:id="laCouleurChoisie" />
+                                <Button disable="${listeDesArcsEnCiel.selectionModel.selectedIndex == moins1}" mnemonicParsing="false" text="Ajouter une couleur" onAction="#creerCouleur" />
+                            </children>
+                        </HBox>
+                    </bottom>
+                </BorderPane>      
+            </items>
+        </SplitPane>
+    </center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Fichier">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clicCharger" text="Charger un royaume..." />
+                        <MenuItem mnemonicParsing="false" onAction="#clicSauvegarder" text="Sauvegarder un royaume..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#clicQuitter" text="Quitter" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>

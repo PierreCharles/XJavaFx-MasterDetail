@@ -1,7 +1,8 @@
-# JavaFx-MasterDetail
- 
-A Java Fx master detail project using Java.
+**JavaFx-MasterDetail - Readme**
+===================
 
-###Architecture
+A simple Java Fx master detail practical work using Java 8.
 
-
+**Architecture :**
+-------
+Using the design pattern architecture MVVM ( Model-View- ViewModel ) .
